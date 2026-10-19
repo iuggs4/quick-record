@@ -4,7 +4,7 @@
 
 ## 使用与发布
 
-直接双击 index.html 即可在浏览器预览，无需启动服务；请保留同目录下的脚本、样式和图标。文件模式不注册离线缓存，页面资源直接从磁盘加载。离线缓存安装需要 localhost 或 HTTPS。文件模式的存储支持取决于浏览器，且与 HTTP/HTTPS 网站的账单不互通；移动文件后请先确认原账单是否仍可访问。将本目录应用文件发布到 GitHub Pages，在 iPhone Safari 打开并添加到主屏幕。无需构建。当前没有配置仓库或实际发布。
+直接双击 index.html 即可在浏览器预览，无需启动服务；请保留同目录下的脚本、样式和图标。文件模式不注册离线缓存，页面资源直接从磁盘加载。离线缓存安装需要 localhost 或 HTTPS。文件模式的存储支持取决于浏览器，且与 HTTP/HTTPS 网站的账单不互通；移动文件后请先确认原账单是否仍可访问。将本目录应用文件发布到 GitHub Pages，在 iPhone Safari 打开并添加到主屏幕。无需构建。已于2026-10-19发布到 GitHub Pages。
 
 第一次联网打开并显示“离线资源已准备好”后，可离线使用。更新应用时同时修改 sw.js 的 CACHE 版本；新版会在旧页面全部关闭后接管，不修改账单库。
 
@@ -16,9 +16,9 @@
 
 网站无需构建或业务后端。仓库提交程序、图标和文档；`.gitignore` 排除本机 Codex 配置，`.nojekyll` 让 Pages 直接发布静态文件。发布资源必须包含 `index.html`、`style.css`、`app.js`、`model.js`、`storage.js`、`sw.js`、`manifest.webmanifest` 和 `icon.png`。
 
-新建公开仓库并上传后，在仓库 Settings → Pages 选择 Deploy from a branch，分支选择上传代码的主分支，目录选择 `/ (root)` 并保存。发布成功后使用 Pages 显示的 HTTPS 地址，在 iPhone Safari 打开并添加到主屏幕。
+仓库：[iuggs4/quick-record](https://github.com/iuggs4/quick-record)。在线网站：[Quick Record](https://iuggs4.github.io/quick-record/)。Pages 发布源为 `main` 分支的 `/ (root)`，已启用 HTTPS。在 iPhone Safari 打开在线网站并添加到主屏幕即可使用。后续推送到 `main` 会触发重新发布。
 
-当前尚未上传、启用 Pages 或验证线上访问。操作说明参考 [GitHub Pages 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)。
+2026-10-19 已上传并启用 Pages；线上首页和8项发布资源均确认HTTP 200，首页标题为 Quick Record。未执行本地功能测试或 iPhone 实机验证。操作说明参考 [GitHub Pages 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)。
 
 ## 开发接口
 
@@ -31,6 +31,7 @@ model.js：金额及备份校验；storage.js：事务存储；app.js：页面�
 金额与备份最小校验位于 tests/model.test.js，可用 npm test 执行。本次未执行自动测试、浏览器验收或 iPhone 实机验证。
 
 Safari 26 的网页玻璃底栏是模拟效果。仅明确识别为 Apple 移动设备 Safari 26 且支持模糊材质时启用；主屏幕缺少版本标记或识别不明确时采用普通底栏。参考图未存放在当前目录，视觉按 PRD 文字实现。
+
 
 
 
