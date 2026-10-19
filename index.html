@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#ffffff"><meta name="apple-mobile-web-app-capable" content="yes"><title>Quick Record</title><meta name="apple-mobile-web-app-title" content="Quick Record"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon.png"><link rel="stylesheet" href="style.css"></head><body>
+<main><section id="home" aria-label="首页"><div id="home-cards" aria-label="首页卡片"><div class="card monthly-card"><time id="home-month"></time><strong id="home-expense" aria-label="当月支出">—</strong><div class="monthly-footer"><span>Income: <span id="home-income">0.00</span></span><span>Expense: <span id="home-expense-detail">—</span></span></div></div><div class="card wallet-card" aria-label="当月钱包"><div class="wallet-heading"><span>Budget <strong>1500</strong></span><span>Remaining <strong id="wallet-remaining">—</strong></span></div><progress id="wallet-progress" max="150000" value="0" aria-label="当月钱包剩余额度" hidden></progress><div class="wallet-footer">Expend <strong id="wallet-expense">—</strong></div></div><div class="card daily-chart-card"><h2>每日花费</h2><p id="weekly-summary" class="muted">花费 — 元</p><div id="daily-chart" role="list" aria-label="最近七天每日支出"></div></div><div class="card overview-card" aria-label="花费概览"><div id="daily-overview"></div></div></div></section>
+
+<section id="bills" hidden><header><h1>账单</h1><div class="bill-menu"><button id="finish-editing" hidden>完成编辑</button><button id="more" aria-label="更多：编辑账单" aria-controls="more-menu" aria-expanded="false">•••</button><div id="more-menu" class="card" hidden><button id="edit-bills" aria-pressed="false">编辑</button><div id="menu-extra"></div></div></div></header><div class="bill-timeline" aria-label="按日期查看账单"><div class="timeline-heading"><label class="month-selector"><strong id="timeline-month"></strong><input id="month-picker" type="month" min="0100-01" max="9999-12" aria-label="选择月份"></label><button id="back-to-today" aria-label="回到今天" title="回到今天" hidden><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M4 10a8 8 0 1 1 1.4 7M4 4v6h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div id="date-timeline" role="group" aria-label="滑动选择日期"></div><p id="timeline-status" class="sr-only" role="status"></p></div><div id="bill-list"></div><div id="bill-actions"></div></section>
+<p id="notice" role="status" aria-live="polite"></p><p id="offline" class="muted"></p></main><dialog id="entry" aria-labelledby="quick-add-title"><div class="sheet-handle" aria-hidden="true"></div><header class="sheet-heading"><h1 id="quick-add-title">Quick Add</h1><button id="close-entry" aria-label="关闭记账面板" autofocus><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M6 6L18 18M18 6L6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></header><div id="entry-tabs" role="tablist" aria-label="收支类型" data-type="expense"><span class="entry-slider" aria-hidden="true"></span><button id="expend-tab" role="tab" aria-selected="true" aria-controls="expense-panel" data-type="expense">Expend</button><button id="income-tab" role="tab" aria-selected="false" aria-controls="income-panel" data-type="income" tabindex="-1">Income</button></div><label id="edit-date-field" class="edit-date-field"><span>日期</span><input id="edit-date" type="date" min="0100-01-01" max="9999-12-31" required></label><div id="expense-panel" class="card" role="tabpanel" aria-labelledby="expend-tab"><div class="amount-field"><span aria-hidden="true">¥</span><div class="amount-input"><span id="amount-measure" class="amount-measure" aria-hidden="true">0.0</span><input id="amount" type="text" inputmode="decimal" enterkeyhint="done" placeholder="0.0" autocomplete="off" spellcheck="false" aria-label="支出金额（元）"></div></div><fieldset><legend>Category</legend><div id="categories"></div></fieldset><div id="form-extra"></div><button class="primary" id="save">完成</button></div><div id="income-panel" class="card" role="tabpanel" aria-labelledby="income-tab" hidden><div class="amount-field"><span aria-hidden="true">¥</span><div class="amount-input"><span id="income-amount-measure" class="amount-measure" aria-hidden="true">0.0</span><input id="income-amount" type="text" inputmode="decimal" enterkeyhint="done" placeholder="0.0" autocomplete="off" spellcheck="false" aria-label="收入金额（元）"></div></div><fieldset><legend>Category</legend><div id="income-categories"></div></fieldset><button class="primary" id="income-save">完成</button></div><p id="entry-notice" role="status" aria-live="polite"></p></dialog>
+<nav aria-label="主导航"><button data-page="home" aria-label="首页" aria-current="page"><span aria-hidden="true">⌂</span></button><button data-page="entry" aria-label="记一笔"><span aria-hidden="true">＋</span></button><button data-page="bills" aria-label="账单"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M5 6H19M5 12H19M5 18H19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span></button></nav><script src="model.js"></script><script src="storage.js"></script><script src="app.js"></script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
