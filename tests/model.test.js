@@ -290,6 +290,19 @@ test('Quick Add新增也提供日期选择，可回填历史日期并保留保�
   assert.equal(monthlyTotal([{amount:1234,createdAt}],now),0);
 });
 
+test('日期清空或退出选择器时恢复上次选择，重新新增和编辑各自初始化日期',()=>{
+  const source=readFileSync(new URL('../app.js',import.meta.url),'utf8');
+  const dateHandlers=source.slice(source.indexOf('function setEntryDate('),source.indexOf('function selectNav('));
+  const handlers={},input={value:'',dataset:{},addEventListener(name,callback){handlers[name]=callback;}};
+  const setDate=new Script(dateHandlers+';setEntryDate;').runInNewContext({$:()=>input,localDay:()=> '2026-10-19'});
+  setDate('');assert.equal(input.value,'2026-10-19');
+  input.value='2026-09-30';handlers.change();
+  input.value='';handlers.change();assert.equal(input.value,'2026-09-30');
+  input.value='';handlers.blur();assert.equal(input.value,'2026-09-30');
+  setDate('2026-10-19');input.value='';handlers.blur();assert.equal(input.value,'2026-10-19');
+  setDate('2026-08-12');input.value='';handlers.change();assert.equal(input.value,'2026-08-12');
+});
+
 test('编辑状态在页头显示完成编辑，退出时恢复更多按钮',()=>{
   const source=readFileSync(new URL('../app.js',import.meta.url),'utf8');
   const editing=source.slice(source.indexOf('function setBillEditing('),source.indexOf("$('edit-bills').onclick="));

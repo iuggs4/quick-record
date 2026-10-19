@@ -1,4 +1,4 @@
-const CACHE='light-ledger-v0.1-42';
+const CACHE='light-ledger-v0.1-43';
 const FILES=['./','./index.html','./style.css','./app.js','./model.js','./storage.js','./manifest.webmanifest','./icon.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES))));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('light-ledger-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));

@@ -24,7 +24,7 @@ for(const form of entryForms){
   $(form.save).onclick=async()=>{
     if(busy)return;
     try{
-      const cents=parseAmount($(form.amount).value);setBusy(true);
+      const cents=parseAmount($(form.amount).value);setEntryDate($('edit-date').value);setBusy(true);
       const original=editingBill;
       const createdAt=changeBillDate(original?.createdAt || new Date().toISOString(),$('edit-date').value);
       const bill={id:original?.id || crypto.randomUUID(),type:form.type,amount:cents,category,createdAt};
@@ -253,7 +253,7 @@ function openBillEditor(bill){
   const form=entryForms.find(form=>form.type===(bill.type || 'expense'));
   form.choose(bill.category);$(form.amount).value=(bill.amount/100).toFixed(2);syncAmountDisplay($(form.amount));
   $('quick-add-title').textContent='Edit Bill';
-  $('edit-date').value=localDay(new Date(bill.createdAt));
+  setEntryDate(localDay(new Date(bill.createdAt)));
   for(const item of entryForms)$(item.save).textContent='保存修改';
   $('entry').showModal();
 }
@@ -281,6 +281,12 @@ for(const tab of entryTabs){
     selectEntryType(next.dataset.type);next.focus();
   };
 }
+function setEntryDate(value){
+  const input=$('edit-date');
+  input.value=value || input.dataset.lastDate || localDay(new Date());
+  input.dataset.lastDate=input.value;
+}
+for(const event of ['change','blur'])$('edit-date').addEventListener(event,()=>setEntryDate($('edit-date').value));
 function selectNav(name){
   for(const tab of document.querySelectorAll('nav button')){
     tab.removeAttribute('aria-current');if(tab.dataset.page===name)tab.setAttribute('aria-current','page');
@@ -288,7 +294,7 @@ function selectNav(name){
 }
 for(const button of document.querySelectorAll('nav button')) button.onclick=()=>{
   if(button.dataset.page==='entry'){
-    $('entry-notice').textContent='';$('edit-date').value=localDay(new Date());$('entry').showModal();return;
+    $('entry-notice').textContent='';setEntryDate(localDay(new Date()));$('entry').showModal();return;
   }
   page=button.dataset.page;
   for(const name of ['home','bills']) $(name).hidden=name!==page;
