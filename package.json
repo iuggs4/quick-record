@@ -1,2 +1,2 @@
-{"name":"quick-record","private":true,"type":"module","scripts":{"test":"node --test tests/model.test.js"}}
+{"name":"quick-record","private":true,"type":"module","scripts":{"test":"node --test tests/model.test.js tests/storage.test.js tests/calendar.test.js tests/templates.test.js"}}
 
